@@ -11,9 +11,9 @@ import { Image } from "@nextui-org/image";
 import { Avatar } from "@nextui-org/avatar";
 
 import React from "react";
-import {Button} from "@nextui-org/button";
+import { Button } from "@nextui-org/button";
 // import Button1 from "./Button1";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { title } from "@/components/primitives";
 
@@ -22,24 +22,22 @@ function getData() {
   return res;
 }
 
-
-export default  function BlogPage() {
+export default function BlogPage() {
   // const listItems = await getData();
   // const listItems = [];
   const [listItems, setListItems] = useState([]);
 
   const [isClicked, setClicked] = useState(false);
 
-
   useEffect(() => {
-    fetch('http://127.0.0.1:3030/list')
-    .then((res) => res.json())
-    .then((data) => {
-      // console.log(data)
-      // listItems = data
-      setListItems(data);
-      // console.log(listItems)
-    })
+    fetch("http://127.0.0.1:3030/list")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        // listItems = data
+        setListItems(data);
+        // console.log(listItems)
+      });
 
     // const listItems = await getData();
   }, []);
@@ -70,8 +68,8 @@ export default  function BlogPage() {
             <CardFooter className="flex justify-center">
               {isClicked ? (
                 <Button color="danger" radius="md" onClick={handleClick}>
-                Unfollow
-              </Button>
+                  Unfollow
+                </Button>
               ) : (
                 <Button color="primary" radius="md" onClick={handleClick}>
                   Follow

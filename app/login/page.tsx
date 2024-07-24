@@ -16,7 +16,7 @@ export default function ContactPage() {
   const [birthday, setBirthday] = useState(
     parseAbsoluteToLocal("2021-04-07T18:45:22Z"),
   );
-
+ 
   // useEffect(()=>{
   //   fetch('http://127.0.0.1:3030/save?id='+id+'&username='+username+'&password='+password+'&birthday='+birthday)
   //   .then((res) => res.json())
@@ -42,10 +42,6 @@ export default function ContactPage() {
   };
 
   const handleClick = function () {
-    // console.log(id);
-    // console.log(username);
-    // console.log(password);
-    // console.log(birthday);
     let _birthday = birthday.year + "-" + birthday.month + "-" + birthday.day;
 
     fetch(
