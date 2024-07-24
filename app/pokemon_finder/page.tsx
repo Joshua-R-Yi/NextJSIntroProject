@@ -1,7 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { Button, Input } from "@nextui-org/react";
+import { useState, useEffect } from "react";
+import { useDisclosure } from "@nextui-org/react";
+import {
+  Button,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+} from "@nextui-org/react";
 import { Avatar } from "@nextui-org/avatar";
 import {
   Card,
@@ -50,12 +58,12 @@ const pokemon = async function (pkm: any) {
     }
 
     const pokemonData = await res.json();
+
     return pokemonData;
     // console.log(pokemonData);
-  } catch (err) {
-    console.error(err);
-    // alert(err.message);
-    // renderError(`Something went wrong  ${err.message}`)
+  } catch (err: any) {
+    // console.error(err);
+    return false;
   }
 };
 
@@ -64,6 +72,7 @@ export default function AboutPage() {
   // const [searchIsDisplayed, setSearchDisplay] = useState(true);
   const [pokemonIsDisplayed, setPokemonDisplay] = useState(false);
   const [identifier, setIdentifier] = useState();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // useState hooks for pokemon data
   const [id, setId] = useState<any>(-1);
@@ -74,31 +83,53 @@ export default function AboutPage() {
   const [moves, setMoves] = useState<any>([]);
   const [games, setGames] = useState<any>([]);
   const [height, setHeight] = useState<any>(-1);
+  const [showErrorModal, setErrorModal] = useState<any>(false);
 
   // Handles change of id
   const handleIdChange = function (x: any) {
-    setIdentifier(x.target.value);
+    setIdentifier(x.target.value.toLowerCase());
   };
+
 
   // Handles the submit button (updates all the states to help render)
   const handleClick = async function () {
-    const userPoke = await pokemon(identifier);
-    const tempName = await userPoke.name;
-    const adjustedName = await tempName.replace(
-      tempName[0],
-      tempName[0].toUpperCase(),
-    );
+    if (identifier == "") {
+      onOpen();
+    } else {
+      const userPoke = await pokemon(identifier);
 
-    // Updates all the states of the pokemon data stats
-    setPokemonDisplay(true);
-    setPic(userPoke.sprites.front_default);
-    setId(userPoke.id);
-    setName(adjustedName);
-    setShinyPic(userPoke.sprites.front_shiny);
-    setTypes(userPoke.types);
-    setMoves(userPoke.moves);
-    setGames(userPoke.game_indices);
-    setHeight(userPoke.height);
+      if (userPoke == false) {
+        setErrorModal(!showErrorModal);
+        setPokemonDisplay(false);
+        onOpen();
+
+        return;
+      }
+      const tempName = await userPoke.name;
+
+      console.log(userPoke);
+
+      const adjustedName = tempName.replace(
+        tempName[0],
+        tempName[0].toUpperCase(),
+      );
+
+      setName(adjustedName);
+      setPokemonDisplay(true);
+
+      // Updates all the states of the pokemon data stats
+      setPic(userPoke.sprites?.front_default);
+      setId(userPoke?.id);
+      setShinyPic(userPoke.sprites?.front_shiny);
+      setTypes(userPoke?.types);
+      setMoves(userPoke?.moves);
+      setGames(userPoke?.game_indices);
+      setHeight(userPoke?.height);
+
+      // if (typeof types[0] !== "undefined") {
+      //   color = types[0].type.name as string
+      // }
+    }
   };
 
   return (
@@ -131,6 +162,27 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
+      </div>
+      <div>
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          isDismissable={false}
+          isKeyboardDismissDisabled={true}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Error!
+                </ModalHeader>
+                <ModalBody>
+                  <p>Pokemon Name or ID does not exist. Try Again!</p>
+                </ModalBody>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       </div>
       <div>
         {pokemonIsDisplayed ? (
