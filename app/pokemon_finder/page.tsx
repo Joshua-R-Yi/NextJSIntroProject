@@ -15,8 +15,8 @@ import { Chip } from "@nextui-org/chip";
 
 import { title } from "@/components/primitives";
 
-const typeColors = {
-  normal: "bg-gray-400",
+const typeColors: any = {
+  normal: "bg-neutral-200",
   fire: "bg-red-500",
   water: "bg-blue-500",
   electric: "bg-yellow-500",
@@ -32,7 +32,7 @@ const typeColors = {
   ghost: "bg-gray-500",
   steel: "bg-neutral-300",
   dragon: "bg-blue-300",
-  dark: "bg-black-500",
+  dark: "bg-neutral-700",
   fairy: "bg-rose-500",
   unknown: "bg-gray-400",
   shadow: "bg-gray-400",
@@ -44,7 +44,9 @@ const pokemon = async function (pkm: any) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkm}/`);
 
     if (!res.ok) {
-      throw new Error("The pokemon name or id that you entered does not exist. Try Again!");
+      throw new Error(
+        "The pokemon name or id that you entered does not exist. Try Again!",
+      );
     }
 
     const pokemonData = await res.json();
@@ -52,7 +54,7 @@ const pokemon = async function (pkm: any) {
     // console.log(pokemonData);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    // alert(err.message);
     // renderError(`Something went wrong  ${err.message}`)
   }
 };
@@ -64,14 +66,14 @@ export default function AboutPage() {
   const [identifier, setIdentifier] = useState();
 
   // useState hooks for pokemon data
-  const [id, setId] = useState(-1);
-  const [name, setName] = useState("");
-  const [pic, setPic] = useState("");
-  const [shinyPic, setShinyPic] = useState("");
-  const [types, setTypes] = useState([]);
-  const [moves, setMoves] = useState([]);
-  const [games, setGames] = useState([]);
-  const [height, setHeight] = useState(-1);
+  const [id, setId] = useState<any>(-1);
+  const [name, setName] = useState<any>("");
+  const [pic, setPic] = useState<any>("");
+  const [shinyPic, setShinyPic] = useState<any>("");
+  const [types, setTypes] = useState<any>([]);
+  const [moves, setMoves] = useState<any>([]);
+  const [games, setGames] = useState<any>([]);
+  const [height, setHeight] = useState<any>(-1);
 
   // Handles change of id
   const handleIdChange = function (x: any) {
@@ -87,6 +89,7 @@ export default function AboutPage() {
       tempName[0].toUpperCase(),
     );
 
+    // Updates all the states of the pokemon data stats
     setPokemonDisplay(true);
     setPic(userPoke.sprites.front_default);
     setId(userPoke.id);
@@ -109,11 +112,11 @@ export default function AboutPage() {
             <h1>Search for Pokémon</h1>
             <Input
               isRequired
+              className="min-w-[250px]"
               label="ID or Name"
               placeholder="Pokemon ID or Name"
               type="text"
               value={identifier}
-              className="min-w-[250px]"
               onChange={handleIdChange}
             />
           </div>
@@ -133,7 +136,7 @@ export default function AboutPage() {
         {pokemonIsDisplayed ? (
           <div className="flex flex-col justify-center items-center">
             <Card
-              className={`min-w-[300px] min-h-[500px] sm:min-w-[800px] sm:min-h-[400px] ${typeColors[types[0].type.name]} `}
+              className={`min-w-[300px] min-h-[500px] sm:min-w-[800px] sm:min-h-[400px] ${typeColors[types[0].type.name as string]} `}
             >
               <CardHeader className="flex flex-col">
                 <h1 className="text-2xl font-bold text-center">
@@ -157,12 +160,12 @@ export default function AboutPage() {
                 />
                 <div className="flex flex-row gap-4">
                   This Pokemon has the following types:
-                  {types.map((curr, idx) => {
+                  {types.map((curr: any, idx: any) => {
                     return (
                       <Chip
-                        size="md"
-                        className="min-w-[100px] items-center justify-center text-center"
                         key={idx}
+                        className="min-w-[100px] items-center justify-center text-center"
+                        size="md"
                       >
                         {curr.type.name}
                       </Chip>
@@ -170,18 +173,21 @@ export default function AboutPage() {
                   })}
                 </div>
                 <div>
-                  <h1>This pokemon is {height * 10} centimeters or {height/10} meters tall</h1>
+                  <h1>
+                    This pokemon is {height * 10} centimeters or {height / 10}{" "}
+                    meters tall
+                  </h1>
                 </div>
                 <Divider />
                 <div className="flex flex-row gap-4 flex-wrap">
                   This Pokemon has the following moves:
                   <div className="flex flex-row gap-4 flex-wrap">
-                    {moves.map((curr, idx) => {
+                    {moves.map((curr: any, idx: any) => {
                       return (
                         <Chip
-                          size="md"
-                          className="min-w-[150px] items-center justify-center text-center"
                           key={idx}
+                          className="min-w-[150px] items-center justify-center text-center"
+                          size="md"
                         >
                           {curr.move.name}
                         </Chip>
@@ -193,12 +199,12 @@ export default function AboutPage() {
                 <div className="flex flex-row gap-4 flex-wrap">
                   This Pokemon is found in the following games:
                   <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
-                    {games.map((curr, idx) => {
+                    {games.map((curr: any, idx: any) => {
                       return (
                         <Chip
-                          size="md"
-                          className="min-w-[150px] items-center justify-center text-center"
                           key={idx}
+                          className="min-w-[150px] items-center justify-center text-center"
+                          size="md"
                         >
                           {curr.version.name}
                         </Chip>

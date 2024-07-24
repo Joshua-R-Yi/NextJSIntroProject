@@ -5,6 +5,10 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
+      label: "Pokemon-Finder",
+      href: "/pokemon_finder",
+    },
+    {
       label: "Home",
       href: "/",
     },
@@ -19,10 +23,6 @@ export const siteConfig = {
     {
       label: "Blog",
       href: "/blog",
-    },
-    {
-      label: "Pokemon-Finder",
-      href: "/pokemon_finder",
     },
     {
       label: "Login",
@@ -64,7 +64,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
+    github: "https://github.com/Joshua-R-Yi",
     twitter: "https://twitter.com/getnextui",
     docs: "https://nextui.org",
     discord: "https://discord.gg/9b6yyZKmH4",

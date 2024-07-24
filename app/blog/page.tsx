@@ -9,7 +9,6 @@ import {
 } from "@nextui-org/react";
 import { Image } from "@nextui-org/image";
 import { Avatar } from "@nextui-org/avatar";
-
 import React from "react";
 import { Button } from "@nextui-org/button";
 // import Button1 from "./Button1";
@@ -19,6 +18,7 @@ import { title } from "@/components/primitives";
 
 function getData() {
   const res = fetch("http://127.0.0.1:3030/list");
+
   return res;
 }
 
