@@ -22,6 +22,72 @@ function getData() {
   return res;
 }
 
+const listItemContent = [
+  {
+    title: "5 Unexpected Places to Find Inspiration for Your Next Project",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "Introvert's Guide to Thriving in an Extroverted World",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "From Mess to Masterpiece: How to Organize Your Creative Chaos",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "The Power of 'No': Why Setting Boundaries is Essential for Success",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "Sleepless in Seattle? Conquering City Life on a Budget",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "Don't Fake It 'Til You Make It: Embracing Your Authentic Self",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "Beyond the Filter: Finding Beauty in the Imperfect",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "The Art of the Side Hustle: Turning Your Passions into Profits",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+  {
+    title: "Adulting 101: Essential Life Skills You Never Learned in School",
+    date: "12/23/2023",
+    img: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?cs=srgb&dl=pexels-sebastian-189349.jpg&fm=jpg",
+    details:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi fuga corporis impedit, numquam veniam sint voluptatem accusamus et recusandae eaque mollitia sapiente minima magni asperiores dolor ad assumenda ea voluptate.",
+  },
+];
+
 export default function BlogPage() {
   // const listItems = await getData();
   // const listItems = [];
@@ -79,7 +145,7 @@ export default function BlogPage() {
           </Card>
         </div>
         <div className="flex flex-col gap-10 ">
-          {listItems.map((curr: any, index: any) => (
+          {listItemContent.map((curr: any, index: any) => (
             <div key={index}>
               <Card
                 isHoverable

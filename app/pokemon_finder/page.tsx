@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDisclosure } from "@nextui-org/react";
 import {
   Button,
@@ -90,7 +90,6 @@ export default function AboutPage() {
     setIdentifier(x.target.value.toLowerCase());
   };
 
-
   // Handles the submit button (updates all the states to help render)
   const handleClick = async function () {
     if (identifier == "") {
@@ -134,16 +133,16 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="text-nowrap">
+      <div className="sm:text-nowrap">
         <h1 className={title()}>Pokémon Basic Info Finder</h1>
       </div>
       <div>
-        <div className="mt-5 flex flex-row justify-evenly items-center gap-10">
+        <div className="mt-5 flex flex-row justify-evenly items-center gap-2 sm:gap-10">
           <div>
             <h1>Search for Pokémon</h1>
             <Input
               isRequired
-              className="min-w-[250px]"
+              className="sm:min-w-[250px]"
               label="ID or Name"
               placeholder="Pokemon ID or Name"
               type="text"
@@ -153,7 +152,7 @@ export default function AboutPage() {
           </div>
           <div>
             <Button
-              className="w-9"
+              className="w-8"
               color="primary"
               size="lg"
               onClick={handleClick}
@@ -165,10 +164,10 @@ export default function AboutPage() {
       </div>
       <div>
         <Modal
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
           isDismissable={false}
           isKeyboardDismissDisabled={true}
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
         >
           <ModalContent>
             {(onClose) => (
@@ -210,8 +209,8 @@ export default function AboutPage() {
                   color="default"
                   src={shinyPic}
                 />
-                <div className="flex flex-row gap-4">
-                  This Pokemon has the following types:
+                <div className="flex flex-row gap-4 items-center justify-center">
+                  <div>This Pokemon has the following types:</div>
                   {types.map((curr: any, idx: any) => {
                     return (
                       <Chip
@@ -231,14 +230,14 @@ export default function AboutPage() {
                   </h1>
                 </div>
                 <Divider />
-                <div className="flex flex-row gap-4 flex-wrap">
-                  This Pokemon has the following moves:
-                  <div className="flex flex-row gap-4 flex-wrap">
+                <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
+                  <div>This Pokemon has the following moves:</div>
+                  <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
                     {moves.map((curr: any, idx: any) => {
                       return (
                         <Chip
                           key={idx}
-                          className="min-w-[150px] items-center justify-center text-center"
+                          className="min-w-[140px] sm:min-w-[150px] items-center justify-center text-center"
                           size="md"
                         >
                           {curr.move.name}

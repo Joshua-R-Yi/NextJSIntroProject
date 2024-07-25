@@ -60,7 +60,7 @@ export default function ContactPage() {
   return (
     <>
       <h1 className={title()}>Input Data</h1>
-      <div className="flex flex-col gap-5 min-w-[550px]">
+      <div className="flex flex-col gap-5 sm:min-w-[550px]">
         <div className="mt-5">
           <Input
             isRequired
