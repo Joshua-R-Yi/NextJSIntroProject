@@ -31,8 +31,8 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Pokemon-Finder",
+      href: "/pokemon_finder",
     },
     {
       label: "Dashboard",
